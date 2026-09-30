@@ -1,5 +1,5 @@
 import { View, Text, Image, StyleSheet } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import { products } from "../../data/products";
 
 export default function ProductoDetalle() {
@@ -10,6 +10,7 @@ export default function ProductoDetalle() {
 
   return (
     <View style={styles.container}>
+      <Stack.Screen options={{ title: "Producto" }} />
       <Image source={{ uri: producto.image }} style={styles.image} />
       <Text style={styles.name}>{producto.name}</Text>
       <Text style={styles.price}>${producto.price}</Text>
