@@ -1,14 +1,22 @@
 import { View, FlatList, Pressable, Image, Text, StyleSheet } from "react-native";
+import { useRouter } from "expo-router";
 import { products } from "../../data/products";
 
 export default function Index() {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
       <FlatList
         data={products}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
-          <Pressable style={styles.card}>
+          <Pressable
+            style={styles.card}
+            onPress={() =>
+              router.push({ pathname: "/producto/[id]", params: { id: String(item.id) } })
+            }
+          >
             <Image source={{ uri: item.image }} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
             <Text style={styles.price}>${item.price}</Text>
